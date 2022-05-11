@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class ObjetoTipo(models.Model):
@@ -11,6 +12,9 @@ class ObjetoTipo(models.Model):
 class Objeto(models.Model):
     id = models.BigAutoField(primary_key=True)
     objeto_tipo_id = models.ForeignKey(ObjetoTipo, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return str(self.id)
 
 class Calibre(models.Model):
     id = models.AutoField(primary_key=True)
@@ -28,6 +32,9 @@ class Arma(models.Model):
     valor_estimado = models.FloatField(blank=True, null=True)
     imagem = models.ImageField(blank=True, null=True)
 
+    def get_absolute_url(self):
+        return reverse("estoque:arma_detail", kwargs={"pk": self.id})
+
     def __str__(self) -> str:
         return self.modelo
 
@@ -38,6 +45,9 @@ class Municao(models.Model):
     marca = models.CharField(max_length=255, blank=True, null=True)
     modelo = models.CharField(max_length=255, blank=True, null=True)
     valor_estimado = models.FloatField(blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse("estoque:municao_detail", kwargs={"pk": self.id})
 
     def __str__(self) -> str:
         return self.modelo

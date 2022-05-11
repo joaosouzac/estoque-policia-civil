@@ -1,0 +1,21 @@
+{% extends "estoque/base.html" %}
+
+{% block title %}PCCE - Armas{% endblock %}
+
+{% block header %} Lista de Armas {% endblock %}
+
+{% block content %}
+    {% for arma in arma_list %}
+        <article>
+            <h2>
+                <a href="{{ arma.get_absolute_url }}">
+                    {{ arma.calibre_id}} {{ arma.modelo }}
+                </a>
+            </h2>
+            <p>
+                Criada por {{ arma.marca }}
+            </p>
+        </article>
+    {% endfor %}
+
+{% endblock %}

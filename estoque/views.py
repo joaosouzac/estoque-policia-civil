@@ -1,3 +1,18 @@
+from pyexpat import model
 from django.shortcuts import render
+from django.views.generic import DetailView, ListView
 
-# Create your views here.
+from .models import Arma, Municao
+
+
+class ArmaListView(ListView):
+    model = Arma
+
+class ArmaDetailView(DetailView):
+    model = Arma
+
+class MunicaoListView(ListView):
+    model = Municao
+
+class MunicaoDetailView(DetailView):
+    model = Municao

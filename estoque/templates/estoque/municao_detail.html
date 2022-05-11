@@ -1,0 +1,18 @@
+{% extends "estoque/base.html" %}
+
+{% block title %}PCCE - Munições - {{ municao.modelo }}{% endblock %}
+
+{% block header %} {{ municao.modelo }} {% endblock %}
+
+{% block content %}
+    <p>
+        Marca: {{ municao.marca }}
+    </p>
+    <p>
+        Calibre: {{ municao.calibre_id}}
+    </p>
+    <p>
+        Valor: {{ municao.valor_estimado }} R$
+    </p>
+    
+{% endblock %}

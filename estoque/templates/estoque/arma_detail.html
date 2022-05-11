@@ -1,0 +1,21 @@
+{% extends "estoque/base.html" %}
+
+{% block title %}PCCE - Armas - {{ arma.modelo }}{% endblock %}
+
+{% block header %} {{ arma.modelo }} {% endblock %}
+
+{% block content %}
+    <p>
+        Marca: {{ arma.marca }}
+    </p>
+    <p>
+        Calibre: {{ arma.calibre_id}}
+    </p>
+    <p>
+        Quantidade de Tiros: {{ arma.quantidade_de_tiros }}
+    </p>
+    <p>
+        Valor: {{ arma.valor_estimado }} R$
+    </p>
+    
+{% endblock %}
