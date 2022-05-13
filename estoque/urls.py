@@ -1,13 +1,12 @@
-from django.urls import path
+from rest_framework.routers import DefaultRouter
 
-from . import views
-
+from .api import viewsets
 
 app_name = "estoque"
 
-urlpatterns = [
-    path("armas/", views.ArmaListView.as_view(), name="arma_list"),
-    path("armas/<int:pk>", views.ArmaDetailView.as_view(), name="arma_detail"),
-    path("municoes/", views.MunicaoListView.as_view(), name="municao_list"),
-    path("municoes/<int:pk>", views.MunicaoDetailView.as_view(), name="municao_detail"),
-]
+router = DefaultRouter(trailing_slash=False)
+router.register(r'objetos', viewsets.ObjetoViewSet)
+router.register(r'armas', viewsets.ArmaViewSet)
+router.register(r'municoes', viewsets.MunicaoViewSet)
+
+urlpatterns = router.urls
