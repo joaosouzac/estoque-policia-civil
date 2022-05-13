@@ -36,14 +36,16 @@ class Arma(models.Model):
     modelo = models.CharField(max_length=255, blank=True, null=True)
     quantidade_de_tiros = models.IntegerField(blank=True, null=True)
     valor_estimado = models.FloatField(blank=True, null=True)
-    imagem = models.ImageField(blank=True, null=True)
+    imagem = models.ImageField(upload_to="armas_images" ,blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse("estoque:arma_detail", kwargs={"pk": self.id})
     
     def save(self, *args, **kwargs):
-        self.id = Objeto.objects.create()
+        if self.pk is None:
+            self.id = Objeto.objects.create()
         return super().save(*args, **kwargs)
+
 
     def __str__(self) -> str:
         if self.modelo == None:
@@ -63,7 +65,8 @@ class Municao(models.Model):
         return reverse("estoque:municao_detail", kwargs={"pk": self.id})
 
     def save(self, *args, **kwargs):
-        self.id = Objeto.objects.create()
+        if self.pk is None:
+            self.id = Objeto.objects.create()
         return super().save(*args, **kwargs)
 
     def __str__(self) -> str:
