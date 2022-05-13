@@ -1,10 +1,13 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 
 from estoque.models import Objeto, Arma, Municao
 from . import serializers
 
 
-class ObjetoViewSet(viewsets.ModelViewSet):
+class ObjetoViewSet(mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    viewsets.GenericViewSet):
     serializer_class = serializers.ObjetoSerializer
     queryset = Objeto.objects.all()
 
