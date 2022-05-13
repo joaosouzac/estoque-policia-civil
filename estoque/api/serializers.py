@@ -9,9 +9,13 @@ class ObjetoSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class ArmaSerializer(serializers.ModelSerializer):
+    imagem = serializers.ImageField(max_length=None, allow_empty_file=True, 
+                                    allow_null=False, use_url=True, required=False)
+
     class Meta:
         model = Arma
-        fields = "__all__"
+        fields = ("id", "calibre_id", "marca", "modelo", "quantidade_de_tiros", 
+                    "valor_estimado", "imagem")
         extra_kwargs = {"id": {"read_only": True},}
 
 class MunicaoSerializer(serializers.ModelSerializer):

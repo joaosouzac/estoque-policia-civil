@@ -19,19 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from rest_framework import routers
-
-from estoque.api import viewsets
-
-
-route = routers.DefaultRouter()
-route.register(r"objetos", viewsets.ObjetoViewSet, basename="objeto")
-route.register(r"armas", viewsets.ArmaViewSet, basename="arma")
-route.register(r"municoes", viewsets.MunicaoViewSet, basename="municao")
 
 urlpatterns = [
+    path('estoque/v1/', include("estoque.urls", namespace="estoque")),
+    path('estoque-auth/', include("rest_framework.urls", namespace="rest_framework")),
     path('admin/', admin.site.urls),
-    path('', include(route.urls)),
 ]
 
 if settings.DEBUG:
