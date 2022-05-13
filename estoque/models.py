@@ -40,6 +40,10 @@ class Arma(models.Model):
 
     def get_absolute_url(self):
         return reverse("estoque:arma_detail", kwargs={"pk": self.id})
+    
+    def save(self, *args, **kwargs):
+        self.id = Objeto.objects.create()
+        return super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         if self.modelo == None:
@@ -57,6 +61,10 @@ class Municao(models.Model):
 
     def get_absolute_url(self):
         return reverse("estoque:municao_detail", kwargs={"pk": self.id})
+
+    def save(self, *args, **kwargs):
+        self.id = Objeto.objects.create()
+        return super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         if self.modelo == None:
